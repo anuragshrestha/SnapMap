@@ -1,1 +1,1 @@
-## This mobile app will capture the snap shot and show the location where it was capture with the picture description.
+## This mobile app will capture the snap picture and show the location where it was capture with the picture description.
