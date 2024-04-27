@@ -12,13 +12,20 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator >
           <Stack.Screen
             name="All Places"
             component={Places}
+            
             options={({ navigation }) => ({
+              title: 'Your choosen places',
+              headerTitleAlign: 'center',
+              headerStyle: {backgroundColor: 'blue'},
+              headerTintColor: 'white',
+              contentStyle: {backgroundColor: 'darkblue'},
+           
               headerRight: () => (
                <IconButtons onPress={() =>
                  navigation.navigate('Add Places')  }/>
@@ -26,7 +33,13 @@ export default function App() {
               ),
             })}
           />
-          <Stack.Screen name="Add Places" component={AddPlace} />
+          <Stack.Screen name="Add Places" component={AddPlace} options={{
+            title: 'New Place',
+            headerBackTitleVisible: false, 
+            headerStyle: {backgroundColor: 'maroon'},
+            headerTintColor: 'white',
+            contentStyle: {backgroundColor: 'darkblue'}
+          }} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
