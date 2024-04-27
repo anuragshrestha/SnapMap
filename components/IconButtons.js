@@ -2,7 +2,7 @@ import { Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons";
 import { StyleSheet, Text } from "react-native";
 
-function IconButtons({ name, size, color, onPress }) {
+function IconButtons({onPress }) {
   return (
   
       <Pressable
@@ -19,9 +19,11 @@ function IconButtons({ name, size, color, onPress }) {
 
 const styles = StyleSheet.create({
   buttons: {
-    paddingLeft: 8,
     justifyContent: "center",
     alignItems: "center",
+    marginLeft: 8,
+    maxWidth: 120
+   
   },
   press: {
     opacity: 0.6,
@@ -30,14 +32,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     color: "white",
-    padding: 1
+     padding: 1
   },
   view: {
     borderRadius: 5,
     borderWidth: 1,
     backgroundColor: "black",
-    padding: 4,
-
+    padding: 5,
+    marginLeft: 18,
+  
   },
 });
 
