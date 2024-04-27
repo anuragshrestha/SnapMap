@@ -1,8 +1,8 @@
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 function Form(){
     return (
-        <Text>
+        <Text style = {styles.conatiner}>
             Add a place here
         </Text>
     )
@@ -11,3 +11,12 @@ function Form(){
 export default Form;
 
 
+const styles = StyleSheet.create({
+    conatiner:{
+        color: 'white',
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        margin: 100
+    }
+})
