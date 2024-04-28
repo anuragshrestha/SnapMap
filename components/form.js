@@ -1,6 +1,8 @@
 import { useScrollToTop } from "@react-navigation/native";
 import { useState } from "react";
-import { Text, StyleSheet, ScrollView, View, TextInput } from "react-native";
+import TakeImage  from './TakeImage';
+import { StyleSheet,View,Text,TextInput,ScrollView } from "react-native";
+import Location from "./Location";
 
 function Form(){
 
@@ -18,6 +20,8 @@ function Form(){
                 </Text>
                 <TextInput style = {styles.input}  onChangeText={changeText} value= {enteredTitle} />
             </View>
+        <TakeImage/>
+        <Location/>
         </ScrollView>
     )
 }
