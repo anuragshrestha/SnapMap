@@ -4,15 +4,22 @@
  * they can choose a different location through goggle map.
  */
 
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import Buttons from "../UI/Button";
 import {
   getCurrentPositionAsync,
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
+import { useState } from "react";
+import  { getMap } from "./Map";
+import { useNavigation } from "@react-navigation/native";
 
 function Location() {
+
+   const navigation = useNavigation();
+
+  const [image, setImage] = useState();
   const [permissionInformation, getPermission] = useForegroundPermissions();
 
   async function permission() {
@@ -41,14 +48,26 @@ function Location() {
     }
 
     const location = await getCurrentPositionAsync();
-    console.log(location);
+    setImage({
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+    });
+console.log(location);
   }
 
-  function getLocationOnMap() {}
+  function getLocationOnMap() {
+    navigation.navigate('Map');
+  }
 
   return (
     <View>
-      <View style={styles.map}></View>
+      <View style={styles.map}>
+        {!image ? (
+          <Text> Choose a location..</Text>
+        ) : (
+          <Image style = {styles.image} source={{ uri: getMap(image.latitude,image.longitude) }} />
+        )}
+      </View>
       <View style={styles.button}>
         <Buttons
           title="Current location"
@@ -74,6 +93,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 6,
     backgroundColor: "skyblue",
+    borderRadius: 6,
+    overflow: 'hidden'
   },
   button: {
     flexDirection: "row",
@@ -82,6 +103,10 @@ const styles = StyleSheet.create({
     marginRight: 60,
     padding: 6,
   },
+  image: {
+    width: '100%',
+    height: '100%'
+  }
 });
 
 export default Location;
