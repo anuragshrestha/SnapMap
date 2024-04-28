@@ -36,7 +36,7 @@ export default function App() {
           <Stack.Screen name="Add Places" component={AddPlace} options={{
             title: 'New Place',
             headerBackTitleVisible: false, 
-            headerStyle: {backgroundColor: 'maroon'},
+            headerStyle: {backgroundColor: 'blue'},
             headerTintColor: 'white',
             contentStyle: {backgroundColor: 'darkblue'}
           }} />

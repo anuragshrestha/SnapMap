@@ -22,13 +22,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
     margin: 4,
+    padding: 4,
     paddingVertical: 6,
     borderWidth: 2,
     flexDirection: "row",
    borderColor: 'skyblue',
    borderRadius: 6,
-   maxWidth: 160,
-   marginLeft: 100
+   maxWidth: 200,
+   marginLeft: 80,
   },
   pressed: {
     opacity: 0.7,

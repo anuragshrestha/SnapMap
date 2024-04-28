@@ -7,7 +7,7 @@ function IconButtons({onPress }) {
   
       <Pressable
         style={({ pressed }) => [styles.buttons, pressed && styles.press]}
-        onPress={onPress}
+        onPress={onPress} 
       >
         <View style={styles.view}>
           <Text style={styles.text}>Add Place</Text>
@@ -36,8 +36,9 @@ const styles = StyleSheet.create({
   },
   view: {
     borderRadius: 5,
-    borderWidth: 1,
-    backgroundColor: "black",
+    borderWidth: 2,
+    backgroundColor: "darkblue",
+    borderColor: 'darkblue',
     padding: 5,
     marginLeft: 18,
   
