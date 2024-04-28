@@ -3,6 +3,7 @@
  */
 
 import { View, Text, Button, Alert, Image, StyleSheet } from "react-native";
+import Buttons from "../UI/Button";
 import {
   launchCameraAsync,
   useCameraPermissions,
@@ -38,25 +39,32 @@ function ImageTaker() {
     if (!hasPermission) {
       return;
     }
-    const image = await launchCameraAsync({
-      allowsEditing: true,
-      quality: 0.5,
-      aspect: [16, 9],
-    });
-    setTakenImage(image.assets[0].uri);
-  }
 
+    try {
+      const image = await launchCameraAsync({
+        allowsEditing: true,
+        quality: 0.5,
+        aspect: [16, 9],
+      });
+
+      if (!image.canceled) {
+        setTakenImage(image.assets[0].uri);
+      }
+    } catch (error) {
+      Alert.alert("Error", "Could not take an image, please try again!");
+    }
+  }
 
   return (
     <View>
       <View style={styles.conatiner}>
         {!takenImage ? (
-          <Text>No image taken..</Text>) :
-           (
+          <Text>No image taken..</Text>
+        ) : (
           <Image style={styles.image} source={{ uri: takenImage }} />
         )}
       </View>
-      <Button title="Take Picture"  onPress={takeImage} />
+      <Buttons title="Take Picture" icon="camera" onPress={takeImage} />
     </View>
   );
 }
