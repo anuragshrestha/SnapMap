@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Places from "./screens/Places";
 import AddPlace from "./screens/AddPlace";
+import ViewMap from "./screens/ViewMap";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -36,6 +37,14 @@ export default function App() {
           <Stack.Screen name="Add Places" component={AddPlace} options={{
             title: 'New Place',
             headerBackTitleVisible: false, 
+            headerStyle: {backgroundColor: 'blue'},
+            headerTintColor: 'white',
+            contentStyle: {backgroundColor: 'darkblue'}
+          }} />
+
+          <Stack.Screen  name="Map" component={ViewMap} options={{
+            headerBackTitleVisible: false, 
+            title: 'Select a place',
             headerStyle: {backgroundColor: 'blue'},
             headerTintColor: 'white',
             contentStyle: {backgroundColor: 'darkblue'}
