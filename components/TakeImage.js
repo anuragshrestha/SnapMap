@@ -11,7 +11,7 @@ import {
 } from "expo-image-picker";
 import { useState } from "react";
 
-function ImageTaker() {
+function ImageTaker({onTakeImage}) {
   const [takenImage, setTakenImage] = useState();
   const [permissionInformation, getPermission] = useCameraPermissions();
 
@@ -49,6 +49,7 @@ function ImageTaker() {
 
       if (!image.canceled) {
         setTakenImage(image.assets[0].uri);
+        onTakeImage(image.assets[0].uri);
       }
     } catch (error) {
       Alert.alert("Error", "Could not take an image, please try again!");
