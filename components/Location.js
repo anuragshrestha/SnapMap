@@ -11,16 +11,36 @@ import {
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
-import { useState } from "react";
-import  { getMap } from "./Map";
-import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { getMap } from "./Map";
+import {
+  useNavigation,
+  useRoute,
+  useIsFocused,
+} from "@react-navigation/native";
 
-function Location() {
-
-   const navigation = useNavigation();
+function Location({ onPickLocation }) {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const isFocused = useIsFocused();
 
   const [image, setImage] = useState();
   const [permissionInformation, getPermission] = useForegroundPermissions();
+
+  useEffect(() => {
+    if (isFocused && route.params) {
+      const selectedLocation = {
+        latitude: route.params.lat,
+        longitude: route.params.long,
+      };
+
+      setImage(selectedLocation);
+    }
+  }, [route, isFocused]);
+
+  useEffect(() => {
+    onPickLocation(image);
+  }, [image, onPickLocation]);
 
   async function permission() {
     if (permissionInformation.status === PermissionStatus.UNDETERMINED) {
@@ -52,11 +72,10 @@ function Location() {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
     });
-console.log(location);
   }
 
   function getLocationOnMap() {
-    navigation.navigate('Map');
+    navigation.navigate("Map");
   }
 
   return (
@@ -65,7 +84,10 @@ console.log(location);
         {!image ? (
           <Text> Choose a location..</Text>
         ) : (
-          <Image style = {styles.image} source={{ uri: getMap(image.latitude,image.longitude) }} />
+          <Image
+            style={styles.image}
+            source={{ uri: getMap(image.latitude, image.longitude) }}
+          />
         )}
       </View>
       <View style={styles.button}>
@@ -94,7 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: "skyblue",
     borderRadius: 6,
-    overflow: 'hidden'
+    overflow: "hidden",
   },
   button: {
     flexDirection: "row",
@@ -104,9 +126,9 @@ const styles = StyleSheet.create({
     padding: 6,
   },
   image: {
-    width: '100%',
-    height: '100%'
-  }
+    width: "100%",
+    height: "100%",
+  },
 });
 
 export default Location;
