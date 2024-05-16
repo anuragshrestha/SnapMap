@@ -1,15 +1,39 @@
 import { useScrollToTop } from "@react-navigation/native";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TakeImage  from './TakeImage';
 import { StyleSheet,View,Text,TextInput,ScrollView } from "react-native";
 import Location from "./Location";
+import IconButtons from "./IconButtons";
+import { Place } from "../structure/place";
 
-function Form(){
+function Form({onCreatePlace}){
 
  const[enteredTitle, setEnteredTitle] = useState(' ');
+ const[enteredImage, setEnteredImage] = useState();
+ const[eneteredLocation, setEnteredLocation] = useState();
+
+
 
   function changeText(enteredText){
     setEnteredTitle(enteredText);
+  }
+
+  function changeImage(uri){
+    setEnteredImage(uri);
+  }
+ 
+  const changeLocation = useCallback((location) => {
+    setEnteredLocation(location);
+  }, [ ]);
+
+  function savePlaceHandler(){
+    console.log(eneteredLocation);
+    console.log(enteredImage);
+    console.log(enteredTitle);
+
+    const placeData = new Place(enteredTitle, enteredImage, eneteredLocation);
+    onCreatePlace(placeData);
+
   }
 
     return (
@@ -20,8 +44,11 @@ function Form(){
                 </Text>
                 <TextInput style = {styles.input}  onChangeText={changeText} value= {enteredTitle} />
             </View>
-        <TakeImage/>
-        <Location/>
+        <TakeImage onTakeImage = {changeImage} />
+        <Location onPickLocation = {changeLocation} />
+        <View style = {styles.button}>
+        <IconButtons onPress={savePlaceHandler} size= '18' > Submit </IconButtons>
+        </View>
         </ScrollView>
     )
 }
@@ -52,5 +79,14 @@ const styles = StyleSheet.create({
      fontWeight : 'bold',
      backgroundColor: 'skyblue',
      borderRadius: 8
+    },
+    button:{
+        marginRight: 20,
+        alignItems: 'center',
+        paddingVertical: 8,
+        fontSize: 18
+    },
+    text:{
+        fontSize: 18
     }
 })
