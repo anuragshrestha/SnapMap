@@ -1,16 +1,31 @@
 import { StatusBar } from "expo-status-bar";
 import IconButtons from "./components/IconButtons";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import AppLoading from 'expo-app-loading'
 import Places from "./screens/Places";
 import AddPlace from "./screens/AddPlace";
 import ViewMap from "./screens/ViewMap";
-import { Children } from "react";
+import { Children, useEffect, useState } from "react";
+import { init } from "./components/database";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+
+  const[dbLoading, setdbLoading] = useState(false);
+
+  useEffect(() => {
+    init().then(() => {
+      setdbLoading(true);
+    }).catch((error) => {
+      Alert.alert("Error", "Can't fetch data base");
+    });
+  }, [ ]);
+
+  if(!dbLoading){
+    return <AppLoading/>
+  }
 
   return (
     <>
