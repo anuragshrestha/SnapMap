@@ -4,9 +4,11 @@
  */
 
 import MapView, { Marker } from "react-native-maps";
-import { Text, StyleSheet, View } from "react-native";
-import { useState } from "react";
-function ViewMap() {
+import { Text, StyleSheet, View, Alert } from "react-native";
+import { useCallback, useLayoutEffect, useState } from "react";
+import AddPlace from "./AddPlace";
+import Buttons from "../UI/Button";
+function ViewMap({ navigation }) {
   const [selectedLocation, setSelectedLocation] = useState();
 
   const region = {
@@ -22,6 +24,31 @@ function ViewMap() {
 
     setSelectedLocation({ lat: latitude, long: longitude });
   }
+
+  const savePickedLocationHandler = useCallback(() => {
+    if (!selectedLocation) {
+      Alert.alert("No location picked", "Please select a location first");
+      return;
+    }
+
+    navigation.navigate("Add Places", {
+      lat: selectedLocation.lat,
+      long: selectedLocation.long,
+    });
+  }, [navigation, selectedLocation]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: ({ tintcolor }) => (
+        <Buttons
+          icon="save"
+          size={24}
+          color={tintcolor}
+          onPress={savePickedLocationHandler}
+        />
+      ),
+    });
+  }, [navigation, savePickedLocationHandler]);
 
   return (
     <MapView
