@@ -31,7 +31,11 @@ function Form({onCreatePlace}){
     console.log(enteredImage);
     console.log(enteredTitle);
 
-    const placeData = new Place(enteredTitle, enteredImage, eneteredLocation);
+    const placeData = new Place(enteredTitle, enteredImage,{
+       lat: eneteredLocation.latitude,
+       long: eneteredLocation.longitude
+    } );
+    console.log('Place Data:', placeData);
     onCreatePlace(placeData);
 
   }
