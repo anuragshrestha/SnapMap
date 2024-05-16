@@ -5,9 +5,16 @@
 
 import Form from "../components/form";
 
-function AddPlace(){
+function AddPlace({navigation}){
+
+  function createPlaceHolder(place){
+         navigation.navigate("All Places", {
+            place: place
+         })
+  }
+
     return(
-        <Form/>
+        <Form onCreatePlace={createPlaceHolder}/>
     )
 }
 
