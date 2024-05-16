@@ -4,7 +4,7 @@
 
 import PlacesLists from "../components/PlacesLists";
 
-function Places({places}){
+function Places({place}){
     return(
         <PlacesLists/>
     )
