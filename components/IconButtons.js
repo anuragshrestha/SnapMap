@@ -2,7 +2,7 @@ import { Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons";
 import { StyleSheet, Text } from "react-native";
 
-function IconButtons({onPress }) {
+function IconButtons({onPress, children, size }) {
   return (
   
       <Pressable
@@ -10,7 +10,7 @@ function IconButtons({onPress }) {
         onPress={onPress} 
       >
         <View style={styles.view}>
-          <Text style={styles.text}>Add Place</Text>
+          <Text  style={[styles.text, {fontSize: size? parseInt(size, 10) : 14} ]}> {children}</Text>
         </View>
       </Pressable>
  
@@ -22,8 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 8,
-    maxWidth: 120
-   
+    maxWidth: 120,
   },
   press: {
     opacity: 0.6,
@@ -35,10 +34,10 @@ const styles = StyleSheet.create({
      padding: 1
   },
   view: {
-    borderRadius: 5,
+    borderRadius: 8,
     borderWidth: 2,
     backgroundColor: "darkblue",
-    borderColor: 'darkblue',
+    borderColor: 'white',
     padding: 5,
     marginLeft: 18,
   
