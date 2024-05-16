@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Places from "./screens/Places";
 import AddPlace from "./screens/AddPlace";
 import ViewMap from "./screens/ViewMap";
+import { Children } from "react";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -15,40 +16,48 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator >
+        <Stack.Navigator>
           <Stack.Screen
             name="All Places"
             component={Places}
-            
             options={({ navigation }) => ({
-              title: 'Your choosen places',
-              headerTitleAlign: 'center',
-              headerStyle: {backgroundColor: 'blue'},
-              headerTintColor: 'white',
-              contentStyle: {backgroundColor: 'darkblue'},
-           
+              title: "Your choosen places",
+              headerTitleAlign: "center",
+              headerStyle: { backgroundColor: "blue" },
+              headerTintColor: "white",
+              contentStyle: { backgroundColor: "darkblue" },
+
               headerRight: () => (
-               <IconButtons onPress={() =>
-                 navigation.navigate('Add Places')  }/>
-               
+                <IconButtons
+                  children="Add Place"
+                  onPress={() => navigation.navigate("Add Places")}
+                />
               ),
             })}
           />
-          <Stack.Screen name="Add Places" component={AddPlace} options={{
-            title: 'New Place',
-            headerBackTitleVisible: false, 
-            headerStyle: {backgroundColor: 'blue'},
-            headerTintColor: 'white',
-            contentStyle: {backgroundColor: 'darkblue'}
-          }} />
+          <Stack.Screen
+            name="Add Places"
+            component={AddPlace}
+            options={{
+              title: "New Place",
+              headerBackTitleVisible: false,
+              headerStyle: { backgroundColor: "blue" },
+              headerTintColor: "white",
+              contentStyle: { backgroundColor: "darkblue" },
+            }}
+          />
 
-          <Stack.Screen  name="Map" component={ViewMap} options={{
-            headerBackTitleVisible: false, 
-            title: 'Select a place',
-            headerStyle: {backgroundColor: 'blue'},
-            headerTintColor: 'white',
-            contentStyle: {backgroundColor: 'darkblue'}
-          }} />
+          <Stack.Screen
+            name="Map"
+            component={ViewMap}
+            options={{
+              headerBackTitleVisible: false,
+              title: "Select a place",
+              headerStyle: { backgroundColor: "blue" },
+              headerTintColor: "white",
+              contentStyle: { backgroundColor: "darkblue" },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
