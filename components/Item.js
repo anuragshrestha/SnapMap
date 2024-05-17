@@ -24,7 +24,7 @@ function Item({ place, pressed }) {
 const styles = StyleSheet.create({
   conatiner: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     shadowOffset: {width: 1, height: 1},
     shadowRadius: 2,
     shadowOpacity: 0.15,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'darkblue',
     borderColor: 'black',
     borderWidth: 2,
-    height: 130,
+    height: 150,
   },
   press: {
     opacity: 0.9,
@@ -47,8 +47,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 6,
   },
   view: {
-    flex: 2,
+    flex: 1,
     flexDirection: 'column',
+    justifyContent: 'center'
   },
   title: {
     fontSize: 24,
@@ -61,8 +62,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
     marginLeft: 15,
-    marginTop: 15,
-    paddingTop: 5
+    paddingTop: 10,
+   
   },
 });
 

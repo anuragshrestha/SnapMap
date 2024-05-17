@@ -13,19 +13,19 @@ import { init } from "./components/database";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
-  const[dbLoading, setdbLoading] = useState(false);
+  // const[dbLoading, setdbLoading] = useState(false);
 
-  useEffect(() => {
-    init().then(() => {
-      setdbLoading(true);
-    }).catch((error) => {
-      Alert.alert("Error", "Can't fetch data base");
-    });
-  }, [ ]);
+  // useEffect(() => {
+  //   init().then(() => {
+  //     setdbLoading(true);
+  //   }).catch((error) => {
+  //     Alert.alert("Error", "Can't fetch data base");
+  //   });
+  // }, [ ]);
 
-  if(!dbLoading){
-    return <AppLoading/>
-  }
+  // if(!dbLoading){
+  //   return <AppLoading/>
+  // }
 
   return (
     <>

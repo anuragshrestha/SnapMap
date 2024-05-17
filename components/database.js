@@ -47,3 +47,24 @@ export function insertData(place) {
   });
   return promise;
 }
+
+export function fetchData() {
+  const promise = new Promise((resolve, reject) => {
+    database.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM places",
+        [],
+        (_, result) => {
+          console.log(result);
+          resolve(result);
+        },
+        (_, error) => {
+          console.log(error);
+          reject(error);
+        }
+      );
+    });
+  });
+
+  return promise;
+}

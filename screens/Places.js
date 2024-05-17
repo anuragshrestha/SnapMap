@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import PlacesLists from "../components/PlacesLists";
 import { useIsFocused } from "@react-navigation/native";
+import { fetchData } from "../components/database";
 
 function Places({route}){
 

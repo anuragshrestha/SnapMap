@@ -6,8 +6,8 @@ import { insertData } from "../components/database";
 import Form from "../components/form";
 
 function AddPlace({ navigation }) {
-  async function createPlaceHolder(place) {
-    await insertData(place);
+  function createPlaceHolder(place) {
+
     navigation.navigate("All Places", {
       place: place,
     });
